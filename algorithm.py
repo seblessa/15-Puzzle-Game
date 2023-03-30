@@ -6,7 +6,6 @@ from operators import moves
 # DFS algorithm, using a stack.
 def DFS(initial, final, depth_limit):
     stack = [(initial, 0, [initial])]
-    visited = set()
     max_nodes = 0
     while stack:
         max_nodes = max(max_nodes, len(stack))
@@ -15,9 +14,7 @@ def DFS(initial, final, depth_limit):
             return max_nodes, path
         if cur_depth < depth_limit:
             for move in moves(cur):
-                if str(move) not in visited:
-                    visited.add(str(cur))
-                    stack.append((move, cur_depth + 1, path + [move]))
+                stack.append((move, cur_depth + 1, path + [move]))
     return None, None
 
 
